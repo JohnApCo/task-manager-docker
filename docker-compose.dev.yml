@@ -1,0 +1,43 @@
+services:
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules # Evita conflictos con node_modules del host
+    ports:
+      - "4200:4200"
+    command: npm run start -- --host 0.0.0.0 --poll 2000 --watch
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./backend:/app
+      - ~/.m2:/root/.m2  # Reutiliza dependencias de Maven
+    ports:
+      - "8080:8080"
+    environment:
+      - SPRING_DEVTOOLS_RESTART_ENABLED=true
+      - SPRING_DEVTOOLS_LIVE_RELOAD_ENABLED=true
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://db:5432/mydatabase
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=postgres
+    command: mvn spring-boot:run
+    depends_on:
+      - db
+  db:
+    image: postgres:15
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_DB: mydatabase
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    volumes:
+      - db_data:/var/lib/postgresql/data
+
+volumes:
+  db_data:
