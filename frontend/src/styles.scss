@@ -1,0 +1,118 @@
+
+// Custom Theming for Angular Material
+// For more information: https://material.angular.io/guide/theming
+@use '@angular/material' as mat;
+// Plus imports for other components in your app.
+
+// Definir paletas de colores
+$light-primary: mat.define-palette(mat.$blue-palette);
+$light-accent: mat.define-palette(mat.$cyan-palette);
+$light-theme: mat.define-light-theme((
+  color: (
+    primary: $light-primary,
+    accent: $light-accent,
+  )
+));
+
+$dark-primary: mat.define-palette(mat.$blue-palette);
+$dark-accent: mat.define-palette(mat.$cyan-palette);
+$dark-theme: mat.define-dark-theme((
+  color: (
+    primary: $dark-primary,
+    accent: $dark-accent,
+  )
+));
+
+// ✅ Aplicamos `core()` una vez
+@include mat.core();
+
+// ✅ Aplicamos `all-component-themes()` solo una vez con un tema por defecto (light-theme)
+@include mat.all-component-themes($light-theme);
+
+.dark-theme {
+  // This mixin only generates the color styles now.
+  @include mat.all-component-colors($dark-theme);
+}
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+// Función para definir las variables de toda la paleta
+@mixin define-theme-vars($theme) {
+  $primary: map-get($theme, color, primary);
+  $accent: map-get($theme, color, accent);
+
+  --primary-color: #{mat.get-color-from-palette($primary, default)};
+  --primary-lighter: #{mat.get-color-from-palette($primary, lighter)};
+  --primary-darker: #{mat.get-color-from-palette($primary, darker)};
+  --primary-contrast: #{mat.get-color-from-palette($primary, "default-contrast")};
+
+  --accent-color: #{mat.get-color-from-palette($accent, default)};
+  --accent-lighter: #{mat.get-color-from-palette($accent, lighter)};
+  --accent-darker: #{mat.get-color-from-palette($accent, darker)};
+  --accent-contrast: #{mat.get-color-from-palette($accent, "default-contrast")};
+
+  // Muestra los valores en la consola (solo para depuración)
+  //@debug "Darker accent color: #{mat.get-color-from-palette($primary, default)}";
+}
+
+// **Clase para el tema claro**
+// Aplicar clases a los temas
+.light-theme {
+  @include define-theme-vars($light-theme);
+  --background-color: white;
+  --text-color-primary: #212121;
+  --text-color-secondary: #616161;
+  --text-color-disabled: #9E9E9E;
+  --border-color: #757575;
+  .success {
+    --mdc-snackbar-container-color: #4caf50;
+    --mat-mdc-snack-bar-button-color: white;
+  }
+
+  .info {
+    --mdc-snackbar-container-color: #2196f3;
+    --mat-mdc-snack-bar-button-color: white;
+    --mdc-snackbar-supporting-text-color: white;
+  }
+
+  .error {
+    --mdc-snackbar-container-color: #f44336;
+    --mat-mdc-snack-bar-button-color: white;
+    --mdc-snackbar-supporting-text-color: white;
+  }
+}
+
+.dark-theme {
+  @include define-theme-vars($dark-theme);
+  --background-color: #121212;
+  --text-color-primary: #E0E0E0;
+  --text-color-secondary: #BDBDBD;
+  --text-color-disabled: #757575;
+  --border-color: #9E9E9E;
+  .success {
+    --mdc-snackbar-container-color: #388e3c;
+    --mat-mdc-snack-bar-button-color: white;
+    --mdc-snackbar-supporting-text-color: white;
+  }
+
+  .info {
+    --mdc-snackbar-container-color: #1976d2;
+    --mat-mdc-snack-bar-button-color: white;
+    --mdc-snackbar-supporting-text-color: white;
+  }
+
+  .error {
+    --mdc-snackbar-container-color: #f44336;
+    --mat-mdc-snack-bar-button-color: white;
+    --mdc-snackbar-supporting-text-color: white;
+  }
+}
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; font-size: 14px;}
+
+.full-width {
+  width: 100%;
+}

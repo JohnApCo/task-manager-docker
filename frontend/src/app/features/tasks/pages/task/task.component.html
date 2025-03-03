@@ -1,0 +1,4 @@
+<div class="tasks-container">
+  <app-task-header (filterChanged)="setFilter($event)"></app-task-header>
+  <app-task-list [tasks]="filteredTasks" (editTask)="editTask($event)" (deleteTask)="deleteTask($event)" (addTask)="addTask()"></app-task-list>
+</div>

@@ -1,0 +1,17 @@
+.task-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+
+  .add-task-card{
+    height: 16rem;
+    border-radius: 0.5rem;
+    border-style: dashed;
+    border-width: 2px;
+    transition: none;
+    font-size: 1.1rem;
+    &:hover {
+      border: none;
+    }
+  }
+}

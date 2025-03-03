@@ -1,0 +1,17 @@
+<mat-card class="task-card">
+  <mat-card-content>
+    <h3>{{ task?.title }}</h3>
+    <p>{{ task?.description }}</p>
+    <div class="content-footer">
+      <span class="task-date">{{ task?.createdAt?.slice(0,10) }}</span>
+      <span [ngClass]="task?.priority?.toLowerCase()">{{ task?.priority }}</span>
+    </div>
+  </mat-card-content>
+  <mat-card-actions>
+    <span class="status" [ngClass]="task?.completed?'complete':'incomplete'">{{ task?.completed?'Completo':'Incompleto' }}</span>
+    <div class="icons">
+      <mat-icon (click)="onEdit()">edit</mat-icon>
+      <mat-icon (click)="onDelete()">delete</mat-icon>
+    </div>
+  </mat-card-actions>
+</mat-card>

@@ -1,0 +1,11 @@
+<div class="task-grid">
+  <app-task-card
+    *ngFor="let task of tasks"
+    [task]="task"
+    (editTask)="onEdit($event)"
+    (deleteTask)="onDelete($event)">
+  </app-task-card>
+
+  <!-- Card para agregar nueva tarea -->
+  <button mat-stroked-button class="add-task-card" (click)="onAddTask()">Add New Task</button>
+</div>

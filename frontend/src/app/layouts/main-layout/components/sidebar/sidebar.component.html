@@ -1,0 +1,15 @@
+<mat-toolbar>
+  <a class="brand">My Task Manager</a>
+</mat-toolbar>
+<mat-nav-list>
+  <p class="section-title">Dashboard</p>
+  <mat-list-item routerLink="/dashboard" routerLinkActive="active" (click)="closeSidenav()">
+    <mat-icon matListItemIcon>dashboard</mat-icon>
+    <span matListItemTitle>Dashboard</span>
+  </mat-list-item>
+  <p class="section-title">Tasks</p>
+  <mat-list-item routerLink="/tasks" routerLinkActive="active" (click)="closeSidenav()">
+    <mat-icon matListItemIcon>task</mat-icon>
+    <span matListItemTitle>All</span>
+  </mat-list-item>
+</mat-nav-list>

@@ -1,0 +1,11 @@
+<div class="header">
+  <h2>All Tasks</h2>
+  <mat-card>
+    <mat-card-content class="filter">
+      <button mat-button [class.active]="selectedFilter === 'all'" (click)="setFilter('all')">All</button>
+      <button mat-button [class.active]="selectedFilter === 'low'" (click)="setFilter('low')">Low</button>
+      <button mat-button [class.active]="selectedFilter === 'medium'" (click)="setFilter('medium')">Medium</button>
+      <button mat-button [class.active]="selectedFilter === 'high'" (click)="setFilter('high')">High</button>
+    </mat-card-content>
+  </mat-card>
+</div>

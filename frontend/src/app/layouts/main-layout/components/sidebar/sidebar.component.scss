@@ -1,0 +1,37 @@
+mat-list-item.active {
+  background-color: var(--accent-color);
+  color: var(--accent-contrast);
+
+  .mat-icon, mat-icon {
+    color: var(--accent-contrast); // Color del icono
+  }
+
+  span {
+    color: var(--accent-contrast); // Color del texto
+  }
+
+  // Eliminar sombra y efectos visuales no deseados
+  &::before, &::after {
+    display: none;
+  }
+
+  &:hover, &:focus, &:active {
+    background-color: var(--accent-color); // Evita cambios de color al interactuar
+    box-shadow: none;
+  }
+}
+
+.mat-toolbar{
+  background-color: transparent;
+  font-weight: 500;
+  font-size: 1.2rem;
+}
+
+.section-title {
+  padding: 8px 16px;
+  margin: 0;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #757575;
+}
+
